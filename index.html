@@ -30,6 +30,7 @@
             width: 100%; 
             height: 100%; 
             min-height: 400px;
+            transform: translateZ(0); /* Hardware acceleration to eliminate map vibration/jitter */
         }
         ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: #0b2b1e; }
@@ -223,7 +224,6 @@
         let map = null;
         let markers = [];
 
-        // Edit default locations here!
         const defaultActivities = [
             {
                 title: "Trinity College & Book of Kells",
@@ -282,7 +282,7 @@
         window.onload = function() {
             loadActivities();
 
-            // Initialize Map with Secure Satellite Tile Layer
+            // Initialize Leaflet Map with secure HTTPS Esri tile layer
             map = L.map('map', { zoomControl: false }).setView([activities[0].lat, activities[0].lng], 16);
 
             L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
@@ -295,7 +295,7 @@
 
             setTimeout(() => { 
                 map.invalidateSize(); 
-            }, 400);
+            }, 300);
 
             renderList();
             renderPins();
@@ -381,8 +381,10 @@
 
             const act = activities[index];
             map.invalidateSize();
+            // Smooth cinematic camera flight animation
             map.flyTo([act.lat, act.lng], 16, {
-                duration: 3.5,
+                animate: true,
+                duration: 2.0,
                 easeLinearity: 0.25
             });
         }
