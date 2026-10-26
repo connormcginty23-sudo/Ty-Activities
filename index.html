@@ -282,17 +282,20 @@
         window.onload = function() {
             loadActivities();
 
-            // Initialize Map with Satellite Layer
+            // Initialize Map with Secure Satellite Tile Layer
             map = L.map('map', { zoomControl: false }).setView([activities[0].lat, activities[0].lng], 16);
 
             L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
                 attribution: 'Tiles &copy; Esri',
-                maxZoom: 18
+                maxZoom: 18,
+                crossOrigin: true
             }).addTo(map);
 
             L.control.zoom({ position: 'topright' }).addTo(map);
 
-            setTimeout(() => { map.invalidateSize(); }, 300);
+            setTimeout(() => { 
+                map.invalidateSize(); 
+            }, 400);
 
             renderList();
             renderPins();
@@ -377,6 +380,7 @@
             renderPins();
 
             const act = activities[index];
+            map.invalidateSize();
             map.flyTo([act.lat, act.lng], 16, {
                 duration: 3.5,
                 easeLinearity: 0.25
