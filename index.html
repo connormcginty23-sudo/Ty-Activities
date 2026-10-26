@@ -216,7 +216,7 @@
 
     <!-- Script Engine -->
     <script>
-        const STORAGE_KEY = "TY_ACTIVITIES_DATA_V1";
+        const STORAGE_KEY = "TY_ACTIVITIES_DATA_V2";
         const ADMIN_PASS = "ferret45";
 
         let isAdmin = false;
@@ -224,38 +224,47 @@
         let map = null;
         let markers = [];
 
+        // Updated default activities from user input
         const defaultActivities = [
             {
-                title: "Trinity College & Book of Kells",
-                locationName: "College Green, Dublin 2, Ireland",
-                lat: 53.3438,
-                lng: -6.2546,
-                imageUrl: "https://images.unsplash.com/photo-1590089415225-401ed6f9db8e?auto=format&fit=crop&w=600&q=80",
-                description: "Guided tour through Ireland's historic university library and exhibition."
+                "title": "Indcution Day",
+                "imageUrl": "https://imagepaste.org/i/6xjr896w.png",
+                "locationName": "Jesus & Mary Secondary School,  Gortnor Abbey",
+                "lat": 54.0971,
+                "lng": -9.2983,
+                "description": ""
             },
             {
-                title: "Eiffel Tower Experience",
-                locationName: "Champ de Mars, Paris, France",
-                lat: 48.8584,
-                lng: 2.2945,
-                imageUrl: "https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?auto=format&fit=crop&w=600&q=80",
-                description: "Cultural TY overseas trip to iconic landmarks across Paris."
+                "title": "Self Defence ",
+                "imageUrl": "https://imagepaste.org/i/t45gabcd.png",
+                "locationName": "Jesus & Mary Secondary School,  Gortnor Abbey",
+                "lat": 54.0971,
+                "lng": -9.2983,
+                "description": ""
             },
             {
-                title: "Killarney National Park Adventure",
-                locationName: "Killarney, Co. Kerry, Ireland",
-                lat: 52.0167,
-                lng: -9.5167,
-                imageUrl: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80",
-                description: "Outdoor leadership, kayaking, and hiking expedition in Kerry."
+                "title": "Wildlands",
+                "imageUrl": "https://imagepaste.org/i/2w7n6b58.png",
+                "locationName": "Wildlands",
+                "lat": 53.3296,
+                "lng": -9.1672,
+                "description": ""
             },
             {
-                title: "GAA Museum & Croke Park Skyline Walk",
-                locationName: "Jones' Rd, Dublin 3, Ireland",
-                lat: 53.3607,
-                lng: -6.2512,
-                imageUrl: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=600&q=80",
-                description: "Interactive sports heritage tour and roof walk above Croke Park."
+                "title": "Life Saving",
+                "imageUrl": "https://imagepaste.org/i/6j625v32.jpg",
+                "locationName": "Ballina Swimming Pool, ",
+                "lat": 54.1137,
+                "lng": -9.1475,
+                "description": ""
+            },
+            {
+                "title": "Golf ",
+                "imageUrl": "https://imagepaste.org/i/unva7qfn.png",
+                "locationName": "ballina golf club",
+                "lat": 54.1085,
+                "lng": -9.1335,
+                "description": ""
             }
         ];
 
@@ -381,10 +390,10 @@
 
             const act = activities[index];
             map.invalidateSize();
-            // Smooth cinematic camera flight animation
+            // Smooth camera glide animation
             map.flyTo([act.lat, act.lng], 16, {
                 animate: true,
-                duration: 2.0,
+                duration: 1.8,
                 easeLinearity: 0.25
             });
         }
